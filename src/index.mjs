@@ -139,7 +139,9 @@ app.get("/", (req, res) => {
 
 app.use(express.json()) // middleware use pannanum yen nah,json format la kudukura naala middleware use pandrom.
 app.post("/users",checkSchema(createUserValidationSchema), (req, res) => {
-    console.log(req.body)
+    const result = validationResult(req)
+    console.log(result)
+    // console.log(req['express-validator#contexts'])
     const {body}=req
     const newUser={id:users[users.length-1].id+1,...body}
     users.push(newUser)
